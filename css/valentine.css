@@ -1,0 +1,556 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Courier", monospace;
+  background: linear-gradient(135deg, #fff5e4 0%, #ffe3e1 50%, #fff5e4 100%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating Hearts Background */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: 35px;
+  opacity: 0.4;
+  animation: float 15s infinite ease-in-out;
+}
+
+.heart-1 {
+  left: 5%;
+  animation-delay: 0s;
+  animation-duration: 12s;
+}
+
+.heart-2 {
+  left: 20%;
+  animation-delay: 2s;
+  animation-duration: 14s;
+}
+
+.heart-3 {
+  left: 35%;
+  animation-delay: 4s;
+  animation-duration: 16s;
+}
+
+.heart-4 {
+  left: 50%;
+  animation-delay: 1s;
+  animation-duration: 13s;
+}
+
+.heart-5 {
+  left: 65%;
+  animation-delay: 3s;
+  animation-duration: 15s;
+}
+
+.heart-6 {
+  left: 80%;
+  animation-delay: 5s;
+  animation-duration: 17s;
+}
+
+.heart-7 {
+  left: 15%;
+  animation-delay: 6s;
+  animation-duration: 14s;
+}
+
+.heart-8 {
+  left: 90%;
+  animation-delay: 2.5s;
+  animation-duration: 16s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.4;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Main Container */
+.container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px 10px;
+}
+
+/* Valentine Card - No Box Design */
+.valentine-card {
+  position: relative;
+  animation: fadeIn 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sparkles */
+.sparkles {
+  font-size: 45px;
+  animation: sparkle 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: scale(1.2) rotate(90deg);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.4) rotate(180deg);
+    opacity: 0.6;
+  }
+
+  75% {
+    transform: scale(1.2) rotate(270deg);
+    opacity: 0.8;
+  }
+}
+
+/* Main Question */
+.main-question {
+  font-size: 42px;
+  color: #ff9494;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 3px 3px 10px rgba(255, 148, 148, 0.3);
+  animation: pulse 2.5s ease-in-out infinite;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow: 3px 3px 10px rgba(255, 148, 148, 0.3);
+  }
+
+  50% {
+    transform: scale(1.05);
+    text-shadow: 5px 5px 20px rgba(255, 148, 148, 0.5);
+  }
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 20px;
+  color: #e67373;
+  font-style: italic;
+  margin: 0;
+  animation: slideIn 1.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Cute Image */
+.cute-image {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 50%;
+  filter: drop-shadow(0 8px 20px rgba(255, 148, 148, 0.4));
+  animation: bounce 3s ease-in-out infinite;
+  border: 4px solid rgba(255, 148, 148, 0.3);
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px 0;
+  align-items: center;
+}
+
+/* Answer Buttons */
+.answer-button {
+  padding: 16px 40px;
+  font-size: 20px;
+  font-family: "Courier", monospace;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 280px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.answer-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.answer-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Yes Button */
+.yes-button {
+  background: linear-gradient(135deg, #ff9494 0%, #ffb4b4 100%);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(255, 148, 148, 0.5);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 6px 20px rgba(255, 148, 148, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 6px 30px rgba(255, 148, 148, 0.8), 0 0 15px rgba(255, 148, 148, 0.4);
+  }
+}
+
+.yes-button:hover {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 12px 35px rgba(255, 148, 148, 0.7);
+  background: linear-gradient(135deg, #ff7b7b 0%, #ff9494 100%);
+}
+
+.yes-button:active {
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* No Button */
+.no-button {
+  background: linear-gradient(135deg, #ffe3e1 0%, #ffd4d1 100%);
+  color: #e67373;
+  box-shadow: 0 5px 18px rgba(255, 180, 180, 0.4);
+}
+
+.no-button:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(255, 180, 180, 0.6);
+  background: linear-gradient(135deg, #ffd4d1 0%, #ffc4c1 100%);
+}
+
+.no-button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Button Emoji */
+.button-emoji {
+  font-size: 24px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+
+  0%,
+  90%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  95% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hint Message */
+.hint-message {
+  margin: 10px 0 0 0;
+  padding: 12px 25px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  border: 2px dashed #ff9494;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  animation: wiggle 4s ease-in-out infinite;
+  box-shadow: 0 4px 15px rgba(255, 148, 148, 0.2);
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  25% {
+    transform: rotate(-3deg) translateY(-3px);
+  }
+
+  50% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  75% {
+    transform: rotate(3deg) translateY(-3px);
+  }
+}
+
+.hint-icon {
+  font-size: 22px;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.hint-text {
+  font-size: 15px;
+  color: #e67373;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* Shake Animation */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-15px) rotate(-2deg);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(15px) rotate(2deg);
+  }
+}
+
+.valentine-card.shake {
+  animation: shake 0.6s ease;
+}
+
+/* Responsive Design */
+
+/* Mobile Devices (up to 600px) */
+@media (max-width: 600px) {
+  .main-question {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .cute-image {
+    max-width: 160px;
+  }
+
+  .answer-button {
+    font-size: 18px;
+    padding: 12px 30px;
+    min-width: 220px;
+  }
+
+  .hint-text {
+    font-size: 13px;
+  }
+
+  .sparkles {
+    font-size: 30px;
+  }
+
+  .button-emoji {
+    font-size: 18px;
+  }
+
+  .hint-message {
+    padding: 8px 15px;
+  }
+}
+
+/* 12-inch Laptops and Small Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .main-question {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .cute-image {
+    max-width: 200px;
+  }
+
+  .answer-button {
+    font-size: 19px;
+    padding: 14px 35px;
+    min-width: 260px;
+  }
+}
+
+/* 14-inch Laptops and Standard Desktops (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .main-question {
+    font-size: 42px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .cute-image {
+    max-width: 220px;
+  }
+}
+
+/* Fix for very short screens */
+@media (max-height: 650px) {
+  .valentine-card {
+    gap: 8px;
+  }
+
+  .main-question {
+    font-size: 24px;
+  }
+
+  .cute-image {
+    max-width: 140px;
+    margin: 5px 0;
+  }
+
+  .button-container {
+    gap: 8px;
+    margin: 10px 0;
+  }
+
+  .answer-button {
+    padding: 8px 25px;
+    font-size: 16px;
+  }
+
+  .hint-message {
+    padding: 5px 15px;
+    margin-top: 5px;
+  }
+}

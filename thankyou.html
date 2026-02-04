@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yay! You Said Yes! 💕</title>
+  <link rel="stylesheet" href="css/lastpage.css" />
+</head>
+
+<body>
+  <!-- Hidden Background Audio -->
+  <audio autoplay loop id="bgMusic">
+    <source src="congratulations.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Floating Background Elements -->
+  <div class="background-decor">
+    <div class="floating-heart heart-1">�</div>
+    <div class="floating-heart heart-2">💕</div>
+    <div class="floating-heart heart-3">💗</div>
+    <div class="floating-heart heart-4">�</div>
+    <div class="floating-sparkle sparkle-1">✨</div>
+    <div class="floating-sparkle sparkle-2">✨</div>
+  </div>
+
+  <!-- Main Creative Container -->
+  <main class="main-content">
+    <div class="glass-container">
+      <!-- Horizontal/Split Layout Section -->
+      <div class="split-layout">
+
+        <!-- Left Wing: The Message -->
+        <div class="content-side">
+          <div class="badge">Success! 🎉</div>
+          <h1 class="main-title">Yaaay! <br><span class="highlight">Thank You!</span> 💖</h1>
+          <p class="description">You've just made me the happiest person ever!
+            <br>I officially have the best Valentine in
+            the world. 🥰
+          </p>
+
+          <div class="features">
+            <div class="feature-tag">💘 100% Love</div>
+            <div class="feature-tag">✨ Best Date</div>
+            <div class="feature-tag">🌈 Pure Happiness</div>
+          </div>
+
+          <div class="cta-wrapper">
+            <h2 class="cta-title">Don't go yet! 💕</h2>
+            <p class="cta-sub">Let's make our plans official...</p>
+            <button class="trending-button" onclick="location.href='date.html'">
+              <span>Plan Our Date! �</span>
+              <div class="btn-glow"></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Wing: The Visual -->
+        <div class="visual-side">
+          <div class="image-frame">
+            <div class="frame-decor"></div>
+            <img src="thanks.png" alt="Happy Cat" class="hero-image" />
+          </div>
+          <div class="love-note">
+            <span>💌 Can't wait!</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Some browsers block autoplay until a user interaction
+    window.addEventListener('click', () => {
+      const audio = document.getElementById('bgMusic');
+      if (audio.paused) {
+        audio.play();
+      }
+    }, { once: true });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which Dessert? 🍦</title>
+  <link rel="stylesheet" href="css/dessert.css" />
+</head>
+
+<body>
+  <!-- Floating Hearts Background -->
+  <div class="hearts-container">
+    <div class="heart" style="left: 10%; animation-delay: 0s;">💖</div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;">💕</div>
+    <div class="heart" style="left: 55%; animation-delay: 4s;">💗</div>
+    <div class="heart" style="left: 80%; animation-delay: 1s;">💝</div>
+    <div class="heart" style="left: 95%; animation-delay: 3s;">💓</div>
+  </div>
+
+  <div id="dessertquestion">
+    <h1>Which dessert we eatin? 🍩</h1>
+  </div>
+
+  <div class="dessert-selection-wrapper">
+    <div class="dessert-item">
+      <img src="food/naturals.jpg" alt="Natural Ice cream" />
+      <input type="checkbox" name="dessert" value="Natural Ice cream" />
+      <label>
+        <span>Natural Ice cream</span>
+      </label>
+    </div>
+
+    <div class="dessert-item">
+      <img src="food/goons.png" alt="Uncle Goons" />
+      <input type="checkbox" name="dessert" value="Uncle Goons" />
+      <label>
+        <span>Uncle Goons</span>
+      </label>
+    </div>
+
+    <div class="dessert-item">
+      <img src="food/jalebi.jpg" alt="Jalebi" />
+      <input type="checkbox" name="dessert" value="Jalebi" />
+      <label>
+        <span>Jalebi</span>
+      </label>
+    </div>
+
+    <!-- <div class="dessert-item">
+      <img src="food/kulfi.jpg" alt="Kulfi" />
+      <input type="checkbox" name="dessert" value="Kulfi" />
+      <label>
+        <span>Kulfi</span>
+      </label>
+    </div> -->
+
+    <!-- <div class="dessert-item">
+      <img src="food/churro.jpeg" alt="Churro" />
+      <input type="checkbox" name="dessert" value="Churro" />
+      <label>
+        <span>Churro</span>
+      </label>
+    </div> -->
+
+    <!-- <div class="dessert-item">
+      <img src="food/kaju-katli.jpg" alt="Kaju Katli" />
+      <input type="checkbox" name="dessert" value="Kaju Katli" />
+      <label>
+        <span>Kaju Katli</span>
+      </label>
+    </div> -->
+  </div>
+
+  <div class="button-container">
+    <button class="button" id="continueBtn">
+      <span>Continue UwU 🍭</span>
+    </button>
+  </div>
+
+  <!-- Custom Alert Modal -->
+  <div class="custom-alert" id="customAlert">
+    <div class="alert-content">
+      <div class="alert-emoji" id="alertEmoji">😱</div>
+      <div class="alert-title" id="alertTitle">Oopsie Woopsie!</div>
+      <div class="alert-message" id="alertMessage">
+        You gotta pick at least 1 sweet treats! <br />
+        Don't be shy, we know you have a sweet tooth! 🍦🍩
+      </div>
+      <button class="alert-button" id="alertCloseBtn">Okay, okay! 😅</button>
+    </div>
+  </div>
+
+  <script>
+    const funnyMessages = [
+      {
+        emoji: "🍦",
+        title: "Just one dessert?",
+        message: "Only one?! Come on Babeee, you deserve at least two! 🍭🍨",
+      },
+      {
+        emoji: "🤨",
+        title: "Seriously?!",
+        message: "You can't just pick one! That's illegal! <br />Pick 2 minimum! 🍫🍰",
+      },
+      {
+        emoji: "😤",
+        title: "Nuh uh!",
+        message: "At least 1 treats please! <br />We're celebrating, not dieting! 🍩🍪",
+      },
+      {
+        emoji: "🙄",
+        title: "Nice try!",
+        message: "1 dessert minimum or no activities for you! <br />Just kidding... or am I? 😏",
+      },
+    ];
+
+    let messageIndex = 0;
+
+    document.getElementById("continueBtn").addEventListener("click", function () {
+      const checkedBoxes = document.querySelectorAll('input[name="dessert"]:checked');
+
+      if (checkedBoxes.length < 1) {
+        const message = funnyMessages[messageIndex];
+        document.getElementById("alertEmoji").textContent = message.emoji;
+        document.getElementById("alertTitle").textContent = message.title;
+        document.getElementById("alertMessage").innerHTML = message.message;
+        document.getElementById("customAlert").classList.add("show");
+        messageIndex = (messageIndex + 1) % funnyMessages.length;
+        return;
+      }
+
+      // Save dessert choices
+      const selectedDessert = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
+      localStorage.setItem('valentine_dessert', selectedDessert);
+
+      location.href = "activities.html";
+    });
+
+    document.getElementById("alertCloseBtn").addEventListener("click", function () {
+      document.getElementById("customAlert").classList.remove("show");
+    });
+
+    document.getElementById("customAlert").addEventListener("click", function (e) {
+      if (e.target === this) {
+        this.classList.remove("show");
+      }
+    });
+
+    // Make the card clickable
+    document.querySelectorAll('.dessert-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'INPUT') {
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          checkbox.checked = !checkbox.checked;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

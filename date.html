@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pick Our Special Day 💕</title>
+  <link rel="stylesheet" href="css/date.css" />
+</head>
+
+<body>
+  <!-- Floating Hearts Background -->
+  <div class="hearts-container">
+    <div class="heart heart-1">💕</div>
+    <div class="heart heart-2">💖</div>
+    <div class="heart heart-3">💗</div>
+    <div class="heart heart-4">💝</div>
+    <div class="heart heart-5">💓</div>
+    <div class="heart heart-6">💕</div>
+  </div>
+
+  <div class="container">
+    <div class="date-card">
+      <div class="card-header">
+        <h1 class="main-title">When Should We Go On Our Date? 💕</h1>
+        <p class="subtitle">Pick a day that makes your heart flutter! ✨</p>
+      </div>
+
+      <div class="calendar-icon">📅</div>
+
+      <form class="date-form" id="dateForm">
+        <div class="input-wrapper">
+          <label class="date-label">Choose Our Special Day:</label>
+          <input type="date" id="dateInput" class="date-input" placeholder="Select a date..." />
+        </div>
+
+        <button class="submit-button" type="submit">
+          <span class="button-text">Let's Plan This Date! 💖</span>
+          <span class="button-icon">→</span>
+        </button>
+      </form>
+
+      <div class="hint-box">
+        <span class="hint-icon">💡</span>
+        <p class="hint-text">Psst... I'm only free on Valentine's weekend! 😉</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Modal -->
+  <div class="custom-alert" id="customAlert">
+    <div class="alert-content">
+      <div class="alert-emoji" id="alertEmoji">📅</div>
+      <div class="alert-title" id="alertTitle">Wrong Date Alert!</div>
+      <div class="alert-message" id="alertMessage">
+        Oops! 💕 Please choose either February 14th or 15th, 2026!<br />
+        Those are our special days! 😊
+      </div>
+      <button class="alert-button" id="alertCloseBtn">Got it! 💖</button>
+    </div>
+  </div>
+
+  <script>
+    const dateInput = document.getElementById('dateInput');
+    const dateForm = document.getElementById('dateForm');
+    const customAlert = document.getElementById('customAlert');
+    const alertCloseBtn = document.getElementById('alertCloseBtn');
+
+    const funnyMessages = [
+      {
+        emoji: "💔",
+        title: "Aww, that date broke my heart!",
+        message: "I'm only free on Valentine's Day weekend! 💕<br />Try February 14th or 15th, 2026! 🌹",
+      },
+      {
+        emoji: "🗓️",
+        title: "Wrong page on the calendar!",
+        message: "Flip to February 14th or 15th, cutie! 💝<br />Those are our special days! 😘",
+      },
+      {
+        emoji: "🙈",
+        title: "Oopsie daisy!",
+        message: "I'm ONLY free on Valentine's weekend! 💕<br />Feb 14 or 15, 2026... pretty please? 🥺",
+      },
+      {
+        emoji: "😤",
+        title: "Nice try, but nope!",
+        message: "Valentine's weekend ONLY! 💝<br />February 14th or 15th, 2026! No exceptions! 😏",
+      },
+      {
+        emoji: "💌",
+        title: "Let me check my schedule...",
+        message: "Hmm... I'm only available on Valentine's Day! 💕<br />Pick Feb 14 or 15, 2026! 💖",
+      },
+    ];
+
+    const noDateMessages = [
+      {
+        emoji: "🤔",
+        title: "Umm... did you forget something?",
+        message: "You gotta actually PICK a date first! 😅<br />Click on the calendar above! 📅",
+      },
+      {
+        emoji: "😂",
+        title: "Invisible date detected!",
+        message: "I can't see any date selected! 👀<br />Try clicking that calendar box! 💕",
+      },
+      {
+        emoji: "🙃",
+        title: "Whoopsie!",
+        message: "You forgot to choose a date, silly! 😋<br />Pick one from the calendar! 📆",
+      },
+      {
+        emoji: "🤨",
+        title: "Hold up!",
+        message: "Where's the date? Did it run away? 🏃‍♂️<br />Please select a date first! 💝",
+      },
+      {
+        emoji: "😜",
+        title: "Not so fast!",
+        message: "You can't submit an empty date! 🚫<br />Choose a day from the calendar, bestie! 💖",
+      },
+      {
+        emoji: "🎯",
+        title: "Mission failed!",
+        message: "You missed the most important step! 😱<br />SELECT A DATE! Then hit submit! 💕",
+      },
+    ];
+
+    let messageIndex = 0;
+    let noDateIndex = 0;
+
+    // Function to show custom alert for wrong dates
+    function showCustomAlert() {
+      const message = funnyMessages[messageIndex];
+      document.getElementById('alertEmoji').textContent = message.emoji;
+      document.getElementById('alertTitle').textContent = message.title;
+      document.getElementById('alertMessage').innerHTML = message.message;
+
+      customAlert.classList.add('show');
+
+      // Rotate to next message
+      messageIndex = (messageIndex + 1) % funnyMessages.length;
+    }
+
+    // Function to show alert for no date selected
+    function showNoDateAlert() {
+      const message = noDateMessages[noDateIndex];
+      document.getElementById('alertEmoji').textContent = message.emoji;
+      document.getElementById('alertTitle').textContent = message.title;
+      document.getElementById('alertMessage').innerHTML = message.message;
+
+      customAlert.classList.add('show');
+
+      // Rotate to next message
+      noDateIndex = (noDateIndex + 1) % noDateMessages.length;
+    }
+
+    // Validate on change
+    dateInput.addEventListener('change', function () {
+      const selectedDate = this.value;
+      const validDates = ['2026-02-14', '2026-02-15'];
+
+      if (!validDates.includes(selectedDate)) {
+        showCustomAlert();
+        this.value = '';
+      }
+    });
+
+    // Validate on submit
+    dateForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const selectedDate = dateInput.value;
+      const validDates = ['2026-02-14', '2026-02-15'];
+
+      if (!selectedDate) {
+        showNoDateAlert();
+        return false;
+      }
+
+      if (!validDates.includes(selectedDate)) {
+        showCustomAlert();
+        return false;
+      }
+
+      // Save the date
+      localStorage.setItem('valentine_date', selectedDate);
+
+      // If valid, navigate to food.html
+      window.location.href = 'food.html';
+    });
+
+    // Close alert
+    alertCloseBtn.addEventListener('click', function () {
+      customAlert.classList.remove('show');
+    });
+
+    // Close alert when clicking outside
+    customAlert.addEventListener('click', function (e) {
+      if (e.target === this) {
+        this.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+
+</html>

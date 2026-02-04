@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What's Next? ✨</title>
+  <link rel="stylesheet" href="css/activities.css" />
+</head>
+
+<body>
+  <!-- Floating Hearts Background -->
+  <div class="hearts-container">
+    <div class="heart" style="left: 10%; animation-delay: 0s;">💖</div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;">💕</div>
+    <div class="heart" style="left: 55%; animation-delay: 4s;">💗</div>
+    <div class="heart" style="left: 80%; animation-delay: 1s;">💝</div>
+    <div class="heart" style="left: 95%; animation-delay: 3s;">💓</div>
+  </div>
+
+  <div id="activityquestion">
+    <h1>What are we doing after? 🎡</h1>
+  </div>
+
+  <div class="activities-selection-wrapper">
+
+
+    <div class="activity-item">
+      <img src="activities/bowling.jpg" alt="bowling" />
+      <input type="checkbox" name="activities" value="bowling" />
+      <label>
+        <span>Bowling</span>
+      </label>
+    </div>
+
+    <div class="activity-item">
+      <img src="activities/stargazing.jpg" alt="Stargazing" />
+      <input type="checkbox" name="activities" value="Stargazing" />
+      <label>
+        <span>Stargazing</span>
+      </label>
+    </div>
+
+    <div class="activity-item">
+      <img src="activities/dumas.webp" alt="Dumas" />
+      <input type="checkbox" name="activities" value="Dumas" />
+      <label>
+        <span>Dumas</span>
+      </label>
+    </div>
+
+    <div class="activity-item">
+      <img src="activities/ginger.avif" alt="ginger" />
+      <input type="checkbox" name="activities" value="ginger" />
+      <label>
+        <span>Ginger Ovaro</span>
+      </label>
+    </div>
+
+    <div class="activity-item">
+      <img src="activities/longdrivenight.jpg" alt="longdrive" />
+      <input type="checkbox" name="activities" value="longdrive" />
+      <label>
+        <span>Long Drive In Night</span>
+      </label>
+    </div>
+    <div class="activity-item">
+      <img src="activities/pickelball.jpg" alt="pickleball" />
+      <input type="checkbox" name="activities" value="pickleball" />
+      <label>
+        <span>Pickleball</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="button" id="continueBtn">
+      <span>Finish Our Plan! 🌹</span>
+    </button>
+  </div>
+
+  <!-- Loading Animation Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader-content">
+      <div class="loader-heart">💖</div>
+      <h2 class="loader-text" id="loaderText">Sending with love...</h2>
+      <div class="loader-sparkles">✨✨✨</div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Modal -->
+  <div class="custom-alert" id="customAlert">
+    <div class="alert-content">
+      <div class="alert-emoji" id="alertEmoji">😱</div>
+      <div class="alert-title" id="alertTitle">Wait a second!</div>
+      <div class="alert-message" id="alertMessage">
+        You gotta pick at least 2 activities! <br />
+        We want a full day of fun! 🎡✨
+      </div>
+      <button class="alert-button" id="alertCloseBtn">Okay, okay! 😅</button>
+    </div>
+  </div>
+
+  <script>
+    const funnyMessages = [
+      {
+        emoji: "🎡",
+        title: "Just one activity?",
+        message: "Only one thing to do? Come on Babeee, let's do more! 🎢✨",
+      },
+      {
+        emoji: "🤨",
+        title: "Seriously?!",
+        message: "You can't just pick one! That's too short! <br />Pick 2 minimum! 🎳📸",
+      },
+      {
+        emoji: "😤",
+        title: "Nuh uh!",
+        message: "At least 2 activities please! <br />I want to spend more time with you! 🌌🚗",
+      },
+      {
+        emoji: "🙄",
+        title: "Nice try!",
+        message: "2 activities minimum or we're stayin' home! <br />Just kidding... or am I? 😏",
+      },
+    ];
+
+    let messageIndex = 0;
+
+    document.getElementById("continueBtn").addEventListener("click", async function () {
+      const checkedBoxes = document.querySelectorAll('input[name="activities"]:checked');
+
+      if (checkedBoxes.length < 2) {
+        const message = funnyMessages[messageIndex];
+        document.getElementById("alertEmoji").textContent = message.emoji;
+        document.getElementById("alertTitle").textContent = message.title;
+        document.getElementById("alertMessage").innerHTML = message.message;
+        document.getElementById("customAlert").classList.add("show");
+        messageIndex = (messageIndex + 1) % funnyMessages.length;
+        return;
+      }
+
+      // SHOW LOADING OVERLAY
+      const overlay = document.getElementById("loadingOverlay");
+      const loaderText = document.getElementById("loaderText");
+      overlay.classList.add("show");
+
+      // 1. Save activity choices
+      const selectedActivities = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
+      localStorage.setItem('valentine_activities', selectedActivities);
+
+      // 2. Gather all details for email
+      const allDetails = {
+        date: localStorage.getItem('valentine_date') || "Not selected",
+        food: localStorage.getItem('valentine_food') || "Not selected",
+        dessert: localStorage.getItem('valentine_dessert') || "Not selected",
+        activities: selectedActivities
+      };
+
+      try {
+        // 4. Send email using Web3Forms
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "b77ff336-df76-4463-a1e9-9309fe68f9d1",
+            subject: "New Valentine Date Plan! 💖",
+            from_name: "Valentine Website",
+            message: `Yay! Here is the plan:\n\n📅 Date: ${allDetails.date}\n🍕 Food: ${allDetails.food}\n🍦 Dessert: ${allDetails.dessert}\n🎡 Activities: ${allDetails.activities}\n\nSent with love from your Valentine website! ✨`,
+          }),
+        });
+
+        // SUCCESS STATE FOR ANIMATION
+        loaderText.textContent = "Plans Saved! 💕✨";
+
+        // Wait 1 second extra to show the success message
+        setTimeout(() => {
+          location.href = "lastpage.html";
+        }, 1200);
+
+      } catch (error) {
+        console.error("Error sending email:", error);
+        location.href = "lastpage.html";
+      }
+    });
+
+    document.getElementById("alertCloseBtn").addEventListener("click", function () {
+      document.getElementById("customAlert").classList.remove("show");
+    });
+
+    document.getElementById("customAlert").addEventListener("click", function (e) {
+      if (e.target === this) {
+        this.classList.remove("show");
+      }
+    });
+
+    // Make the card clickable
+    document.querySelectorAll('.activity-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'INPUT') {
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          checkbox.checked = !checkbox.checked;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
