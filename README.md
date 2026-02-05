@@ -19,7 +19,7 @@ Welcome to the "Will You Be My Valentine?" project, a playful and interactive wa
 2. Create a new form and get the access key.
 3. Update the access key in the code. 
 
-    ## Access Key (access_key: "Your_Access_Key_Here") in activities.html file. Line Number 169 (Line number may be differ if you change the code).
+- Access Key (access_key: "Your_Access_Key_Here") in activities.html file. Line Number 169 (Line number may be differ if you change the code).
 
 4. Deploy the project to GitHub Pages.
 
