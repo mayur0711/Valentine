@@ -150,7 +150,9 @@
       localStorage.setItem('valentine_activities', selectedActivities);
 
       // 2. Gather all details for email
+      const userName = localStorage.getItem('valentine_user_name') || "Someone Special";
       const allDetails = {
+        name: userName,
         date: localStorage.getItem('valentine_date') || "Not selected",
         food: localStorage.getItem('valentine_food') || "Not selected",
         dessert: localStorage.getItem('valentine_dessert') || "Not selected",
@@ -167,9 +169,9 @@
           },
           body: JSON.stringify({
             access_key: "b77ff336-df76-4463-a1e9-9309fe68f9d1",
-            subject: "New Valentine Date Plan! 💖",
-            from_name: "Valentine Website",
-            message: `Yay! Here is the plan:\n\n📅 Date: ${allDetails.date}\n🍕 Food: ${allDetails.food}\n🍦 Dessert: ${allDetails.dessert}\n🎡 Activities: ${allDetails.activities}\n\nSent with love from your Valentine website! ✨`,
+            subject: `Valentine Plan from ${allDetails.name}! 💖`,
+            from_name: allDetails.name,
+            message: `Yay! Here is the plan from ${allDetails.name}:\n\n📅 Date: ${allDetails.date}\n🍕 Food: ${allDetails.food}\n🍦 Dessert: ${allDetails.dessert}\n🎡 Activities: ${allDetails.activities}\n\nSent with love from your Valentine website! ✨`,
           }),
         });
 

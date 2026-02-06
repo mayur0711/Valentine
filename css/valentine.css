@@ -421,6 +421,13 @@ body {
   font-weight: bold;
 }
 
+/* Magic Link Styles */
+.highlight-name {
+  color: #ff4d4d;
+  text-decoration: underline wavy #ffb4b4;
+  text-underline-offset: 5px;
+}
+
 /* Shake Animation */
 @keyframes shake {
 

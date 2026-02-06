@@ -36,7 +36,7 @@
       <img src="please.png" alt="Please say yes!" class="cute-image" />
 
       <div class="button-container">
-        <button class="answer-button yes-button" id="yesButton" onclick="location.href='thankyou.html'">
+        <button class="answer-button yes-button" id="yesButton">
           <span class="button-emoji">💖</span>
           <span class="button-text">Yes! Absolutely! 😊</span>
         </button>
@@ -72,6 +72,10 @@
       "Last chance! 💕"
     ];
 
+    yesButton.addEventListener("click", function () {
+      location.href = 'thankyou.html';
+    });
+
     noButton.addEventListener("click", function () {
       // Increase Yes button size
       var currentFontSize = parseInt(
@@ -91,6 +95,24 @@
       setTimeout(() => {
         document.querySelector('.valentine-card').classList.remove('shake');
       }, 500);
+    });
+
+    // Magic Link Personalization
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const toName = urlParams.get('to');
+
+      if (toName) {
+        // Save to localStorage for later steps
+        localStorage.setItem('valentine_user_name', toName);
+
+        // Update Heading
+        const heading = document.querySelector('.main-question');
+        heading.innerHTML = `Will You Be My Valentine, <span class="highlight-name">${toName}</span>? 💕`;
+      } else {
+        // Clear if no name provided to avoid using previous person's name
+        localStorage.removeItem('valentine_user_name');
+      }
     });
   </script>
 </body>
