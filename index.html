@@ -97,23 +97,7 @@
       }, 500);
     });
 
-    // Magic Link Personalization
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const toName = urlParams.get('to');
 
-      if (toName) {
-        // Save to localStorage for later steps
-        localStorage.setItem('valentine_user_name', toName);
-
-        // Update Heading
-        const heading = document.querySelector('.main-question');
-        heading.innerHTML = `Will You Be My Valentine, <span class="highlight-name">${toName}</span>? 💕`;
-      } else {
-        // Clear if no name provided to avoid using previous person's name
-        localStorage.removeItem('valentine_user_name');
-      }
-    });
   </script>
 </body>
 
